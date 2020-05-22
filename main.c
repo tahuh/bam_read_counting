@@ -21,11 +21,11 @@ int main(int argc, char **argv)
     sam_hdr_t *hdr = sam_hdr_read(fp);
     bam1_t *b = bam_init1();
     while(sam_read1(fp, hdr, b) >= 0){
-        nreads++;
+        NREADS++;
     }
     sam_close(fp);
     sam_hdr_destroy(hdr);
-    bam_destroy1();
+    bam_destroy1(b);
     fprintf(stdout, "%zu reads in %s\n", NREADS, bamname);
     return 0;
 }
